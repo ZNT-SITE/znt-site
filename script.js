@@ -1,9 +1,13 @@
 
 async function connectWallet() {
-    if (typeof window.ethereum !== 'undefined') {
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        alert("Connected: " + accounts[0]);
+    if (window.ethereum) {
+        try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            alert("Wallet connected!");
+        } catch (error) {
+            alert("Connection rejected.");
+        }
     } else {
-        alert("MetaMask not found");
+        alert("MetaMask not found!");
     }
 }
