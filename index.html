@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZNT — Zenith Token</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #0f0f0f; color: #e0e0e0; margin: 0; }
+        header { background: linear-gradient(90deg, #00ff88, #005533); padding: 40px 20px; text-align: center; }
+        header img { max-height: 80px; margin-bottom: 10px; }
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { font-size: 1.2em; margin-top: 10px; }
+        section { padding: 40px 20px; max-width: 900px; margin: auto; }
+        h2 { color: #00ff88; border-bottom: 2px solid #00ff88; padding-bottom: 10px; }
+        .tokenomics table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .tokenomics th, .tokenomics td { border: 1px solid #00ff88; padding: 10px; text-align: center; }
+        footer { text-align: center; padding: 20px; background-color: #101010; color: #aaa; font-size: 0.9em; }
+        .btns a, .btns button { display: inline-block; margin: 10px; padding: 10px 20px; background-color: #00ff88; color: #000; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; }
+        .btns a:hover, .btns button:hover { background-color: #00cc66; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            header p { font-size: 1em; }
+        }
+    </style>
+    <script>
+        const translations = {
+            en: {
+                title: "ZNT Token",
+                slogan: "The future of identity and decentralized value",
+                about: "ZNT (ZENITH Token) is a decentralized blockchain project focused on identity, security, and true peer-to-peer transactions. Built from scratch with minimal dependencies, ZNT aims to become a core layer for digital identity, DAO, and community-based governance.",
+                tokenomics: "Tokenomics",
+                roadmap: "Roadmap",
+                contact: "Contact",
+                email: "Email: contact@zenithchain.io",
+                buy: "Buy on Uniswap",
+                connect: "Connect Wallet",
+                telegram: "Telegram",
+                whitepaper: "Whitepaper"
+            },
+            ru: {
+                title: "Токен ZNT",
+                slogan: "Будущее идентичности и децентрализованной ценности",
+                about: "ZNT (ZENITH Token) — это децентрализованный блокчейн-проект, ориентированный на идентичность, безопасность и настоящие P2P-транзакции. Построен с нуля с минимальными зависимостями, стремится стать базовым уровнем для цифровой идентичности, DAO и управления сообществом.",
+                tokenomics: "Токеномика",
+                roadmap: "Дорожная карта",
+                contact: "Контакты",
+                email: "Email: contact@zenithchain.io",
+                buy: "Купить на Uniswap",
+                connect: "Подключить кошелёк",
+                telegram: "Телеграм",
+                whitepaper: "Whitepaper"
+            }
+        };
+
+        function changeLang(lang) {
+            const t = translations[lang] || translations.en;
+            document.getElementById("title").textContent = t.title;
+            document.getElementById("slogan").textContent = t.slogan;
+            document.getElementById("aboutText").textContent = t.about;
+            document.getElementById("tokenomicsTitle").textContent = t.tokenomics;
+            document.getElementById("roadmapTitle").textContent = t.roadmap;
+            document.getElementById("contactTitle").textContent = t.contact;
+            document.getElementById("emailInfo").textContent = t.email;
+            document.getElementById("buyBtn").textContent = t.buy;
+            document.getElementById("connectBtn").textContent = t.connect;
+            document.getElementById("telegramBtn").textContent = t.telegram;
+            document.getElementById("whitepaperBtn").textContent = t.whitepaper;
+        }
+
+        let userAddress = "";
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                userAddress = accounts[0];
+                document.getElementById("walletAddress").textContent = "Wallet: " + userAddress.slice(0, 6) + "..." + userAddress.slice(-4);
+                getBalance();
+            } else {
+                alert("MetaMask not detected.");
+            }
+        }
+
+        async function getBalance() {
+            const fakeBalance = "999.999";
+            document.getElementById("zntBalance").textContent = "Balance: " + fakeBalance + " ZNT";
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: right; padding: 10px;">
+        <select onchange="changeLang(this.value)">
+            <option value="en">🇺🇸 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+        </select>
+    </div>
+    <header>
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="ZNT Logo">
+        <h1 id="title">ZNT Token</h1>
+        <p id="slogan">The future of identity and decentralized value</p>
+        <p id="walletAddress" style="font-size: 0.9em; color: #111;"></p>
+        <p id="zntBalance" style="font-size: 0.9em; color: #111;"></p>
+        <div class="btns">
+            <a href="#" id="whitepaperBtn">Whitepaper</a>
+            <a href="https://t.me/Vladimir_N42" id="telegramBtn">Telegram</a>
+            <a href="https://app.uniswap.org/" target="_blank" id="buyBtn">Buy on Uniswap</a>
+            <button onclick="connectWallet()" id="connectBtn">Connect Wallet</button>
+        </div>
+    </header>
+
+    <section>
+        <h2 id="tokenomicsTitle">Tokenomics</h2>
+        <table>
+            <tr><th>Category</th><th>Allocation</th><th>Tokens</th></tr>
+            <tr><td>Team</td><td>20%</td><td>20,000,000</td></tr>
+            <tr><td>Reserve Fund</td><td>10%</td><td>10,000,000</td></tr>
+            <tr><td>Airdrop</td><td>10%</td><td>10,000,000</td></tr>
+            <tr><td>Public Sale (IDO)</td><td>40%</td><td>40,000,000</td></tr>
+            <tr><td>Partnerships & Bounties</td><td>10%</td><td>10,000,000</td></tr>
+            <tr><td>Staking & DAO</td><td>10%</td><td>10,000,000</td></tr>
+        </table>
+    </section>
+
+    <section>
+        <h2 id="roadmapTitle">Roadmap</h2>
+        <ul>
+            <li>✅ Blockchain Core MVP</li>
+            <li>✅ Telegram Bot Integration</li>
+            <li>🟡 Token Deployment (ERC-20 / Native)</li>
+            <li>🔜 IDO Launch & Website</li>
+            <li>🔜 Marketing Campaign & Listings</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="contactTitle">Contact</h2>
+        <p id="emailInfo">Email: contact@zenithchain.io</p>
+    </section>
+
+    <footer>
+        &copy; 2025 ZENITH Blockchain — ZNT Token. All rights reserved.
+    </footer>
+</body>
+</html>
