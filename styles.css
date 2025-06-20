@@ -1,0 +1,14 @@
+
+body { margin: 0; font-family: sans-serif; background: #121212; color: #fff; }
+.container { max-width: 960px; margin: auto; padding: 40px 20px; text-align: center; }
+header { background: #0f0f0f; padding: 60px 20px; }
+.logo { height: 80px; margin-bottom: 20px; }
+.btn-group a, .btn-group button {
+    margin: 10px; padding: 12px 24px; background: #00ff88; color: #000;
+    border: none; border-radius: 5px; font-weight: bold; text-decoration: none;
+}
+.btn-group a:hover, .btn-group button:hover { background: #00cc66; cursor: pointer; }
+section { padding: 60px 20px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.feature { background: #1e1e1e; padding: 20px; border-radius: 10px; }
+footer { background: #0f0f0f; padding: 20px; color: #aaa; font-size: 0.9em; }
